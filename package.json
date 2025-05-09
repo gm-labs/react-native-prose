@@ -1,7 +1,7 @@
 {
-  "name": "react-native-uitextview",
+  "name": "react-native-prose",
   "version": "1.4.0",
-  "description": "UITextView for React Native",
+  "description": "Text component for prose in React Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/src/index.d.ts",
@@ -31,21 +31,21 @@
   },
   "keywords": [
     "react-native",
-    "ios",
-    "uitextview",
+    "prose",
+    "paragraphs",
     "select",
     "selection"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bluesky-social/react-native-uitextview.git"
+    "url": "git+https://github.com/gm-labs/react-native-prose.git"
   },
-  "author": "Hailey <me@haileyok.com> (https://github.com/haileyok)",
+  "author": "Will <will@perch.app> (https://github.com/wyilio)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bluesky-social/react-native-uitextview/issues"
+    "url": "https://github.com/gm-labs/react-native-prose/issues"
   },
-  "homepage": "https://github.com/bluesky-social/react-native-uitextview#readme",
+  "homepage": "https://github.com/gm-labs/react-native-prose#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
