@@ -1,5 +1,5 @@
-import {UITextView} from './Text'
+import {UITextView} from './UITextView'
 
-import {Prose} from './Prose'
+import {Prose, ProseText} from './Prose'
 
-export {Prose, UITextView}
+export {Prose, ProseText, UITextView}
