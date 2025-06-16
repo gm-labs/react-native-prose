@@ -32,20 +32,20 @@ import com.facebook.react.uimanager.ReactAccessibilityDelegate.Role;
 import com.facebook.react.uimanager.ReactShadowNode;
 import com.facebook.react.uimanager.ViewProps;
 import com.facebook.react.uimanager.annotations.ReactProp;
-import com.facebook.react.views.text.CustomLetterSpacingSpan;
-import com.facebook.react.views.text.CustomLineHeightSpan;
-import com.facebook.react.views.text.CustomStyleSpan;
-import com.facebook.react.views.text.ReactAbsoluteSizeSpan;
-import com.facebook.react.views.text.ReactBackgroundColorSpan;
-import com.facebook.react.views.text.ReactForegroundColorSpan;
-import com.facebook.react.views.text.ReactStrikethroughSpan;
+import com.facebook.react.views.text.internal.span.CustomLetterSpacingSpan;
+import com.facebook.react.views.text.internal.span.CustomLineHeightSpan;
+import com.facebook.react.views.text.internal.span.CustomStyleSpan;
+import com.facebook.react.views.text.internal.span.ReactAbsoluteSizeSpan;
+import com.facebook.react.views.text.internal.span.ReactBackgroundColorSpan;
+import com.facebook.react.views.text.internal.span.ReactForegroundColorSpan;
+import com.facebook.react.views.text.internal.span.ReactStrikethroughSpan;
 import com.facebook.react.views.text.ReactTextViewManagerCallback;
 import com.facebook.react.views.text.ReactTypefaceUtils;
-import com.facebook.react.views.text.ReactUnderlineSpan;
-import com.facebook.react.views.text.ShadowStyleSpan;
+import com.facebook.react.views.text.internal.span.ReactUnderlineSpan;
+import com.facebook.react.views.text.internal.span.ShadowStyleSpan;
 import com.facebook.react.views.text.TextAttributes;
 import com.facebook.react.views.text.TextTransform;
-import com.facebook.react.views.text.ReactTagSpan;
+import com.facebook.react.views.text.internal.span.ReactTagSpan;
 import com.facebook.yoga.YogaDirection;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -69,8 +69,6 @@ public abstract class RNProseBaseTextShadowNode extends LayoutShadowNode {
   // character.
   // https://en.wikipedia.org/wiki/Bi-directional_text#weak_characters
   private static final String INLINE_VIEW_PLACEHOLDER = "0";
-  public static final int UNSET = ReactFontManager.TypefaceStyle.UNSET;
-
   public static final String PROP_SHADOW_OFFSET = "textShadowOffset";
   public static final String PROP_SHADOW_OFFSET_WIDTH = "width";
   public static final String PROP_SHADOW_OFFSET_HEIGHT = "height";
@@ -155,8 +153,8 @@ public abstract class RNProseBaseTextShadowNode extends LayoutShadowNode {
                       || parentTextAttributes.getEffectiveFontSize() != effectiveFontSize) {
         ops.add(new SetSpanOperation(start, end, new ReactAbsoluteSizeSpan(effectiveFontSize)));
       }
-      if (textShadowNode.mFontStyle != UNSET
-              || textShadowNode.mFontWeight != UNSET
+      if (textShadowNode.mFontStyle != ReactConstants.UNSET
+              || textShadowNode.mFontWeight != ReactConstants.UNSET
               || textShadowNode.mFontFamily != null) {
         ops.add(
                 new SetSpanOperation(
@@ -259,7 +257,7 @@ public abstract class RNProseBaseTextShadowNode extends LayoutShadowNode {
   protected @Nullable AccessibilityRole mAccessibilityRole = null;
   protected @Nullable Role mRole = null;
 
-  protected int mNumberOfLines = UNSET;
+  protected int mNumberOfLines = ReactConstants.UNSET;
   protected int mTextAlign = Gravity.NO_GRAVITY;
   protected int mTextBreakStrategy =
           (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) ? 0 : Layout.BREAK_STRATEGY_HIGH_QUALITY;
@@ -286,9 +284,9 @@ public abstract class RNProseBaseTextShadowNode extends LayoutShadowNode {
    * mFontStyle can be {@link Typeface#NORMAL} or {@link Typeface#ITALIC}. mFontWeight can be {@link
    * Typeface#NORMAL} or {@link Typeface#BOLD}.
    */
-  protected int mFontStyle = UNSET;
+  protected int mFontStyle = ReactConstants.UNSET;
 
-  protected int mFontWeight = UNSET;
+  protected int mFontWeight = ReactConstants.UNSET;
   /**
    * NB: If a font family is used that does not have a style in a certain Android version (ie.
    * monospace bold pre Android 5.0), that style (ie. bold) will not be inherited by nested Text
@@ -341,9 +339,9 @@ public abstract class RNProseBaseTextShadowNode extends LayoutShadowNode {
     return textAlign;
   }
 
-  @ReactProp(name = ViewProps.NUMBER_OF_LINES, defaultInt = UNSET)
+  @ReactProp(name = ViewProps.NUMBER_OF_LINES, defaultInt = ReactConstants.UNSET)
   public void setNumberOfLines(int numberOfLines) {
-    mNumberOfLines = numberOfLines == 0 ? UNSET : numberOfLines;
+    mNumberOfLines = numberOfLines == 0 ? ReactConstants.UNSET : numberOfLines;
     markUpdated();
   }
 

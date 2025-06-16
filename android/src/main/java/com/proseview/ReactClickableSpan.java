@@ -12,7 +12,7 @@ import com.facebook.react.uimanager.UIManagerHelper;
 import com.facebook.react.uimanager.events.Event;
 import com.facebook.react.uimanager.events.EventDispatcher;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
-import com.facebook.react.views.text.ReactSpan;
+import com.facebook.react.views.text.internal.span.ReactSpan;
 
 /**
  * Custom event for text press actions

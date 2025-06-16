@@ -1,5 +1,7 @@
 package com.proseview
 
+import com.facebook.react.uimanager.ReactStylesDiffMap
+import com.facebook.react.uimanager.StateWrapper
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.ViewGroupManager
 
@@ -18,7 +20,7 @@ class RNProseViewManager : ViewGroupManager<RNProseView>() {
     return RNProseViewShadowNode::class.java
   }
 
-  override fun updateExtraData(view: RNProseView, extraData: Any?) {
+  override fun updateExtraData(view: RNProseView, extraData: Any) {
     if (extraData is CharSequence) {
       view.text = extraData
     }

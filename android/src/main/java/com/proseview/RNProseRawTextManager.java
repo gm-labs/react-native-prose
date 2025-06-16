@@ -17,8 +17,15 @@ public class RNProseRawTextManager extends ViewManager<View, RNProseRawTextShado
   @NonNull
   @Override
   public View createViewInstance(@NonNull ThemedReactContext context) {
-    return new View(context); // dummy
+    throw new IllegalStateException("Attempt to create a native view for RNProseRawText");
   }
+
+  public View prepareToRecycleView(ThemedReactContext context, View view) {
+    throw new IllegalStateException("Attempt to recycle a native view for RNProseRawText");
+  }
+
+  @Override
+  public void updateExtraData(@NonNull View root, Object extraData) {}
 
   @Override
   public RNProseRawTextShadowNode createShadowNodeInstance() {
@@ -29,7 +36,4 @@ public class RNProseRawTextManager extends ViewManager<View, RNProseRawTextShado
   public Class<RNProseRawTextShadowNode> getShadowNodeClass() {
     return RNProseRawTextShadowNode.class;
   }
-
-  @Override
-  public void updateExtraData(@NonNull View root, Object extraData) {}
 }

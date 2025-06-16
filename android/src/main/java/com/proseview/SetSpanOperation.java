@@ -4,7 +4,7 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import com.facebook.common.logging.FLog;
-import com.facebook.react.views.text.ReactSpan;
+import com.facebook.react.views.text.internal.span.ReactSpan;
 
 class SetSpanOperation {
   private static final String TAG = "SetSpanOperation";
