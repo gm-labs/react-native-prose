@@ -15,11 +15,6 @@ const LINKING_ERROR =
   '- You rebuilt the app after installing the package\n' +
   '- You are not using Expo Go\n'
 
-// These props are for the main ProseText component
-export interface ProseProps extends TextProps {
-  uiTextView?: boolean
-}
-
 // These props are for the main native wrapper component
 export interface RNUITextViewProps extends TextProps {
   children: React.ReactNode
@@ -60,7 +55,13 @@ const textDefaults: TextProps = {
   selectable: true
 }
 
-function UITextViewChild({style, children, ...rest}: ProseProps) {
+function UITextViewChild({
+  style,
+  children,
+  ...rest
+}: TextProps & {
+  uiTextView?: boolean
+}) {
   const [isAncestor, rootStyle] = useTextAncestorContext()
 
   // Flatten the styles, and apply the root styles when needed
@@ -122,7 +123,11 @@ function UITextViewChild({style, children, ...rest}: ProseProps) {
   }
 }
 
-function ProseTextInner(props: ProseProps) {
+function UITextViewInner(
+  props: TextProps & {
+    uiTextView?: boolean
+  }
+) {
   const [isAncestor] = useTextAncestorContext()
 
   // Even if the uiTextView prop is set, we can still default to using
@@ -134,9 +139,9 @@ function ProseTextInner(props: ProseProps) {
   return <UITextViewChild {...props} />
 }
 
-export function ProseText(props: ProseProps) {
+export function UITextView(props: TextProps & {uiTextView?: boolean}) {
   if (Platform.OS !== 'ios') {
     return <RNText {...props} />
   }
-  return <ProseTextInner {...props} />
+  return <UITextViewInner {...props} />
 }

@@ -1,2 +1,2 @@
-import {ProseText} from './Text'
-export {ProseText}
+import {UITextView} from './Text'
+export {UITextView}
