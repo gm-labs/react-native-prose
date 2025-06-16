@@ -1,6 +1,6 @@
 {
   "name": "react-native-prose",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Text component for prose in React Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
