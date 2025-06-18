@@ -138,8 +138,6 @@ class RNProseViewShadow: RCTShadowView {
       return
     }
 
-    self.setAttributedText()
-
     self.bridge.uiManager.addUIBlock { uiManager, viewRegistry in
       guard let proseView = viewRegistry?[self.reactTag] as? RNProseView else {
         return
