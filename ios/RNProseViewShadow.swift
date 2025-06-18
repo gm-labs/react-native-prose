@@ -71,8 +71,6 @@ class RNProseViewShadow: RCTShadowView {
         return
       }
 
-      child.setAttributedText()
-
       let string = NSMutableAttributedString(attributedString: child.attributedText)
 
       let paragraphStyle = NSMutableParagraphStyle()

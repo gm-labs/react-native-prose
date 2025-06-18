@@ -22,12 +22,17 @@ class RNUITextViewChildShadow: RCTShadowView {
   }
 
   override func didSetProps(_ changedProps: [String]!) {
-    guard let superview = self.superview as? RNUITextViewShadow else {
-      return
-    }
+    guard let superview = self.superview as? RNUITextViewShadow else { return }
 
-    if !YGNodeIsDirty(superview.yogaNode) {
+    if let proseGrandparent = superview.superview as? RNProseViewShadow {
       superview.setAttributedText()
+      if !YGNodeIsDirty(proseGrandparent.yogaNode) {
+        proseGrandparent.setAttributedText()
+      }
+    } else {
+      if !YGNodeIsDirty(superview.yogaNode) {
+        superview.setAttributedText()
+      }
     }
   }
 
