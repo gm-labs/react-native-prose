@@ -101,8 +101,8 @@ public class RNProseViewShadowNode extends RNProseBaseTextShadowNode {
         if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.Q) {
           layoutWidth = (float) Math.ceil(layoutWidth);
         }
-        int extraSpacing = (getChildCount() - 1) * mParagraphSpacing;
-        float layoutHeight = layout.getLineBottom(lineCount - 1) + extraSpacing;
+
+        float layoutHeight = layout.getLineBottom(lineCount - 1);
 
         return YogaMeasureOutput.make(layoutWidth, layoutHeight);
       }
