@@ -26,9 +26,9 @@ class RNUITextViewChildShadow: RCTShadowView {
 
     if let proseGrandparent = superview.superview as? RNProseViewShadow {
       superview.setAttributedText()
-      if !YGNodeIsDirty(proseGrandparent.yogaNode) {
-        proseGrandparent.setAttributedText()
-      }
+
+      // TODO: add back dirty yoga node check
+      proseGrandparent.setAttributedText()
     } else {
       if !YGNodeIsDirty(superview.yogaNode) {
         superview.setAttributedText()
