@@ -3,16 +3,9 @@ class RNProseViewShadow: RCTShadowView {
   var attributedText: NSAttributedString = NSAttributedString()
   var frameSize: CGSize = .zero
 
-  @objc var fontSize: CGFloat = 16.0 {
-    didSet {
-      self.dirtyLayout()
-    }
-  }
-
-  @objc var allowsFontScaling: Bool = true
-
   @objc var paragraphSpacing: CGFloat = 0 {
     didSet {
+      self.setAttributedText()
       self.dirtyLayout()
     }
   }
