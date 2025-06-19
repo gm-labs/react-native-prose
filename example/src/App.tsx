@@ -73,13 +73,8 @@ export default function App() {
 
           <View>
             <RNText style={styles.subheader}>RN-Prose, lorem ipsum:</RNText>
-            <Prose paragraphSpacing={16}>
-              <ProseText
-                style={[
-                  styles.lineHeight30,
-                  styles.fontSize20,
-                  styles.coloredBlack
-                ]}>
+            <Prose paragraphSpacing={16} lineHeight={35}>
+              <ProseText style={[styles.fontSize20, styles.coloredBlack]}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -110,12 +105,7 @@ export default function App() {
                   laborum.
                 </ProseText>
               </ProseText>
-              <ProseText
-                style={[
-                  styles.lineHeight30,
-                  styles.fontSize20,
-                  styles.coloredBlack
-                ]}>
+              <ProseText style={[styles.fontSize20, styles.coloredBlack]}>
                 Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
                 accusantium doloremque{' '}
                 <ProseText style={styles.backgroundColor}>
@@ -124,12 +114,7 @@ export default function App() {
                 eaque ipsa, quae ab illo inventore veritatis et quasi architecto
                 beatae vitae dicta sunt, explicabo.
               </ProseText>
-              <ProseText
-                style={[
-                  styles.lineHeight30,
-                  styles.fontSize20,
-                  styles.coloredBlack
-                ]}>
+              <ProseText style={[styles.fontSize20, styles.coloredBlack]}>
                 Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut
                 odit aut fugit, sed{' '}
                 <ProseText

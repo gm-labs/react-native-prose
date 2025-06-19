@@ -7,7 +7,6 @@ import {
   Text as RNText,
   StyleSheet
 } from 'react-native'
-import {useProseContext} from './Prose'
 
 type ProseRawTextProps = TextProps & {
   text: string
@@ -97,9 +96,7 @@ function AndroidTextViewChild({style, children, ...rest}: TextProps) {
 }
 
 export function AndroidTextView(props: TextProps) {
-  const isProse = useProseContext()
-
-  if (Platform.OS !== 'android' || !isProse) {
+  if (Platform.OS !== 'android') {
     return <RNText {...props} />
   }
 

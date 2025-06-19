@@ -19,6 +19,7 @@ class RNProseViewShadow: RCTShadowView {
 
   @objc var lineHeight: CGFloat = 0 {
     didSet {
+      self.setAttributedText()
       self.dirtyLayout()
     }
   }

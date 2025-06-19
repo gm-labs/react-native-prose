@@ -16,9 +16,10 @@ const LINKING_ERROR = `The view 'RNProseView' from 'react-native-prose' doesn't 
 
 export interface ProseProps extends TextProps {
   paragraphSpacing?: number
+  lineHeight?: number
 }
 
-export interface RNProseViewProps extends TextProps {
+export interface RNProseViewProps extends ProseProps {
   children: React.ReactNode
   style: ViewStyle[]
 }
@@ -31,20 +32,35 @@ const RNProseView =
         throw new Error(LINKING_ERROR)
       }
 
-const ProseContext = React.createContext<boolean>(false)
+interface ProseContextValue {
+  isInsideProse: boolean
+  lineHeight?: number
+}
+
+const ProseContext = React.createContext<ProseContextValue>({
+  isInsideProse: false
+})
 
 export const useProseContext = () => React.useContext(ProseContext)
 
-export function Prose({style, children, ...rest}: ProseProps) {
+export function Prose({style, children, lineHeight, ...rest}: ProseProps) {
   const flattenedStyle = React.useMemo(
     () => StyleSheet.flatten([style]),
     [style]
   )
 
+  const contextValue = React.useMemo(
+    () => ({
+      isInsideProse: true,
+      lineHeight
+    }),
+    [lineHeight]
+  )
+
   if (Platform.OS === 'ios' || Platform.OS === 'android') {
     return (
-      <ProseContext.Provider value={true}>
-        <RNProseView {...rest} style={[flattenedStyle]}>
+      <ProseContext.Provider value={contextValue}>
+        <RNProseView {...rest} style={[flattenedStyle]} lineHeight={lineHeight}>
           {children}
         </RNProseView>
       </ProseContext.Provider>
@@ -53,11 +69,17 @@ export function Prose({style, children, ...rest}: ProseProps) {
     return <View />
   }
 }
+
 export function ProseText(props: TextProps) {
-  if (Platform.OS === 'ios') {
+  const {isInsideProse, lineHeight} = useProseContext()
+
+  if (Platform.OS === 'ios' && isInsideProse) {
     return <UITextView selectable uiTextView {...props} />
-  } else if (Platform.OS === 'android') {
-    return <AndroidTextView {...props} />
+  } else if (Platform.OS === 'android' && isInsideProse) {
+    const androidStyle =
+      isInsideProse && lineHeight ? [props.style, {lineHeight}] : props.style
+
+    return <AndroidTextView {...props} style={androidStyle} />
   }
   return <RNText {...props} />
 }
