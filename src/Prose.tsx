@@ -73,7 +73,7 @@ export function Prose({style, children, lineHeight, ...rest}: ProseProps) {
 export function ProseText(props: TextProps) {
   const {isInsideProse, lineHeight} = useProseContext()
 
-  if (Platform.OS === 'ios' && isInsideProse) {
+  if (Platform.OS === 'ios') {
     return <UITextView selectable uiTextView {...props} />
   } else if (Platform.OS === 'android' && isInsideProse) {
     const androidStyle =
